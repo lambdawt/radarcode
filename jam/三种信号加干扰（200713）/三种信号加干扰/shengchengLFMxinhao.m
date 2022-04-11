@@ -1,0 +1,21 @@
+function [y,D]=shengchengLFMxinhao(B1,Pt,tau,f0,tm,k)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Rmin=sqrt((Kj*Pt*sigma)/(4*pi*(Pj)*rj))
+% f1=-f0+f1;
+% Prs=((Pt*(10^((Gt/10)))*(10^((Gr/10)))*lamta*lamta*sigma)/((4*pi*4*pi*4*pi)*(R*R*R*R)*10^(L/10))); %目标回波信号功率
+% Prj=((Pj*(10^((Gj/10)))*(10^((Gjr/10)))*lamta*lamta*0.5)/((4*pi*4*pi)*(Rj*Rj)*10^(L/10)));%干扰信号功率
+% A=sqrt(Prs);%回波信号幅度
+% Aj=sqrt(Prj);%干扰信号幅度
+% An=10*log10((1.382e-23)*Te*B*10^(F/10));%噪声强度
+% deltt1=2*(R1-R)/c;%假目标相对真目标延迟时间
+% fr=1/tr;%脉冲重复频率
+% ts=1/fs; 
+% f_doppler=2*v/lamta;%真目标多普勒频率
+% f_doppler1=2*v1/lamta;%假目标多普勒频率
+% tm=0:1/fs:tr-1/fs;%一个脉冲重复周期采样序列
+% O=tau/ts;%一个脉宽采样点数
+% ft=linspace(0,tau,O);%一个脉宽采样序列
+% N=length(tm);%一个脉冲重复周期采样点数长度
+% k=B1/tau;%B/fs*2*pi/max(ft);  %调制系数
+D=B1*tau;%脉压比
+y=sqrt(Pt)*rectpuls(tm-tau/2,tau).*exp(1j*2*pi*(((f0-B1/2)+k*(tm)/2).*(tm)));%exp(j*2*pi*(((f0-B/2)+k*ft/2).*ft));%产生和脉宽长度相同的线性调频信号
